@@ -57,15 +57,15 @@ public class S3Service {
                 LOG.info("Successfully retrieved resource.");
                 return resource;
             } else {
-                LOG.error("S3 Client response status: {}", headObjectResponse.sdkHttpResponse().statusCode());
-                throw new RuntimeException("S3 Client did not respond with correct HTTP status. See logs for more details.");
+                LOG.error("S3 Client response status: {}.", headObjectResponse.sdkHttpResponse().statusCode());
+                throw new Exception("S3 Client did not respond with correct HTTP status. See logs for more details.");
             }
 
         } catch (NoSuchKeyException e) {
             LOG.error("Object key {} not found. Logs: {}", id, e.getMessage());
             throw new ResourceNotFoundException("Resource not found in S3 bucket.");
         } catch (Exception e) {
-            LOG.error("Error fetching resource with ID {}", id, e);
+            LOG.error("Error fetching resource with ID {}. Logs: {}", id, e.getMessage());
             throw new RuntimeException("An error occurred while fetching the resource.");
         }
     }
