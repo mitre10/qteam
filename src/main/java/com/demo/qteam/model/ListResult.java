@@ -1,25 +1,14 @@
 package com.demo.qteam.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.List;
 
+@Data
+@AllArgsConstructor
 public class ListResult<T> {
 
     private List<T> resources;
     private String cursor; // Used for pagination
-
-    public ListResult() {
-    }
-
-    public ListResult(List<T> resources, String cursor) {
-        this.resources = resources;
-        this.cursor = cursor;
-    }
-
-    public List<T> getResources() {
-        return resources;
-    }
-
-    public String getCursor() {
-        return cursor;
-    }
 }
